@@ -15,7 +15,11 @@ char *VGA = (char *)0xA0000;
 void setMode(char mode) {
 	union REGS regs;
 
-	// Get BIOS video mode (320x200x256)
+	/*
+	For now, only 320x200 is supported. 640x480 is some kind of nightmare,
+	It is obsolete, and unusable.
+	*/
+	
 	regs.h.ah = 0x00;
 	regs.h.al = mode;
 	int86(0x10, &regs, &regs);
